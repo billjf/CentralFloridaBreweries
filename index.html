@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Central Florida Breweries</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiJZLTt_UEFR6dAx58_DG79O76ICmSMt4&libraries=places" async defer></script>
+    <script>
+      const florida = { lat: 28.5383, lng: -81.3792 }; // Central Florida coordinates
+
+      function initMap() {
+        console.log("Initializing map...");
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 10,
+          center: florida
+        });
+
+        new google.maps.Marker({
+          position: florida,
+          map: map,
+          title: "Central Florida"
+        });
+
+        console.log("Map loaded successfully.");
+        findBreweries(map);
+      }
+
+      function findBreweries(map) {
+        console.log("Starting brewery search...");
+        const service = new google.maps.places.PlacesService(map);
+
+        const request = {
+          location: florida,
+          radius: 50000,
+          type: "brewery",
+          keyword: "brewery"  // Ensures brewery-related businesses are prioritized
+        };
+
+        console.log("Request parameters:", request);
+        service.nearbySearch(request, (results, status) => {
+          console.log("API Response Status:", status);
+          console.log("Results Array:", results);
+
+          if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+            results.forEach((place) => {
+              console.log(`Found Brewery: ${place.name}, Address: ${place.vicinity}`);
+
+              const marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: place.name,
+                icon: {
+                  url: "https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/beermug.png",
+                  scaledSize: new google.maps.Size(40, 40) // Adjust size if needed
+                }
+              });
+
+              const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>${place.name}</h3><p>${place.vicinity}</p>${place.types && place.types.length > 0 ? `<p>Type(s): ${place.types.join(", ")}</p>` : "<p>No types available</p>"}`
+              });
+
+              marker.addListener("click", () => {
+                infoWindow.open(map, marker);
+              });
+            });
+          } else {
+            console.error("No breweries found or Places API request failed!");
+          }
+        });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <h1>Welcome to Central Florida Breweries!</h1>
+    <div id="map" style="height: 500px; width: 80%; margin: 20px auto; border: 2px solid white;"></div>
+  </body>
+</html>

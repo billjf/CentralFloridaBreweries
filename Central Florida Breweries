@@ -1,0 +1,14 @@
+function initMap() {
+  const florida = { lat: 28.5383, lng: -81.3792 }; // This exists ONLY inside initMap()
+  
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 10,
+    center: florida
+  });
+
+  findBreweries(map); // Calls findBreweries() but it doesn't know "florida"
+}
+
+function findBreweries(map) {
+  console.log(florida); // ❌ ERROR! florida is NOT recognized here
+}

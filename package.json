@@ -1,0 +1,22 @@
+{
+  "name": "centralfloridabreweries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billjf/CentralFloridaBreweries.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/billjf/CentralFloridaBreweries/issues"
+  },
+  "homepage": "https://github.com/billjf/CentralFloridaBreweries#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3"
+  }
+}
