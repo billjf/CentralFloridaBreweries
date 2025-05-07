@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "C:\\Users\\bsamb\\CentralFloridaBreweries"
+        }
+    ],
+    "settings": {
+        "editor.tabSize": 2,
+        "files.autoSave": "afterDelay",
+        "terminal.integrated.cwd": "C:\\Users\\bsamb\\CentralFloridaBreweries",
+        "liveServer.settings.port": 5500,
+        "liveServer.settings.root": "/"
+    }
+}
