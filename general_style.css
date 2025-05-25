@@ -1,7 +1,13 @@
 /* ✅ General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c; /* Dark charcoal black */
+    background-image: url('https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/background_brewery_1.jpg');
+    background-size: cover; /* Ensures full width */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Keeps it fixed while scrolling */
+    background-color: #1c1c1c; /* Your site's main background color */
+    background-blend-mode: multiply; /* Blends the image with the background color */
     color: #f5f5f5; /* Light text */
     text-align: center;/* center-aligns text */
     overflow-x: hidden; /* Prevent horizontal scroll */
@@ -9,20 +15,6 @@ body {
     line-height: 1.6; /* ✅ Improves text spacing */
     padding-top: 0px; /* Ensures no extra space at the top */
     margin-top: 0px; /* Prevents unintended spacing */
-}
-
-/* ✅ Brewery Logo Positioning  for Index */
-.brewery-logo {
-    position: absolute;
-    top: 15px; /* Pushes it all the way to the top */
-    left: 20px; /* Aligns logo to the left */
-    width: 200px; /* Keeps it at a visible size */
-    height: auto; /* Maintains aspect ratio */
-    max-width: 75%; /* Prevents overflow */
-}
-
-#map-container {
-    padding-top: 2px; /* Adds space above the map */
 }
 
 /* ✅ Styling for the top divider */
@@ -40,9 +32,10 @@ body {
     max-width: 1200px; /* ✅ Limits excessive stretching */
     margin: 0 auto; /* ✅ Centers the container */
     padding: 17px; /* ✅ Standard padding for both About & Taco Trucks pages */
-    border: 0.1in solid #4a4947; /* ✅ Dark border */
+    border: 3px solid #4a4947; /* Thinner dark border */
     align-items: center; /* ✅ Ensures vertical alignment */
     text-align: left;/* left-aligns text */
+    background-color: #000; /* Solid black background */
 }
 
 .taco-page .split-container {
@@ -69,14 +62,7 @@ body {
     justify-content: center; /* ✅ Centers image horizontally */
     align-items: center; /* ✅ Centers image vertically */
     height: 65vh; /* ✅ Allows vertical centering */
-}
-
-/* ✅ About Page Image */
-.beer-image {
-    width: 65%; /* Adjusted for better fit */
-    height: auto; /* Maintains aspect ratio */
-    display: block;
-    border-radius: 10px; /* Optional rounded corners */
+    width: 100%; /* Ensure image fills the left section */
 }
 
 /* ✅ Taco Truck Page Image */
@@ -100,10 +86,20 @@ body {
     border-radius: 10px;
 }
 
+/* Beer Image Styling */
+.beer-image {
+    width: 100%; /* Make image fill most of the left container */
+    max-width: 550px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
 /* ✅ Top Navigation Buttons */
 .top-buttons {
     position: absolute;
-    top: 17px;
+    top: 35px;
     right: 20px;
     display: flex;
     gap: 10px;
@@ -112,7 +108,7 @@ body {
 .top-buttons button {
     background-color: #ffac33;
     color: #222;
-    border: 1px solid #fff; /* Add thin white border */
+    border: 1px solid #fff; /* White thin border */
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -121,22 +117,29 @@ body {
 /* ✅ Full-Width Divider */
 .full-width-container {
     width: 100vw;
-    height: 10px;
+    height: 4px;
     background-color: #353534; /* ✅ Dark divider */
-    margin-top: 15px;
+    margin-top: 16px;
     margin-bottom: 13px;
+}
+
+/* New full-width-divider class */
+.full-width-divider {
+    width: 100vw;
+    height: 4px;
+    background-color: #353534;
+    margin-top: 5px;
+    margin-bottom: 13px;
+    position: relative;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
 }
 
 /* ✅ Text Alignment for Pages */
 .about-page .right,
 .taco-page .right { /* ✅ Ensures left-aligned text on both pages */
     text-align: left;
-}
-
-/* ✅ Force black font color inside Google Maps InfoWindow */
-.gm-style .gm-style-iw {
-    color: #000 !important;
-    font-weight: 400;
 }
 
 /* ✅ Welcome Section */
@@ -164,30 +167,7 @@ a {
 
 a:hover {
     color: #ffd166;
-}
 
-/* ✅ Brewery Map */
-#map {
-    border: 2px solid #ffac33;
-}
-
-/* ✅ Search Bar Styling */
-.search-container {
-    display: flex;
-    justify-content: center; /* ✅ Centers the search bar */
-    align-items: center; /* ✅ Ensures vertical alignment */
-    width: 100%; /* ✅ Makes sure it spans the entire container */
-    margin-top: 20px; /* ✅ Adds spacing from the top elements */
-}
-
-/* ✅ Search Input */
-#searchBox {
-    width: 100%;
-    background-color: transparent;
-    color: #f5f5f5;
-    font-size: 16px;
-    border: none;
-    padding: 0;
 }
 
 /* Get More Info Page - General Styles */
@@ -249,4 +229,37 @@ a:hover {
     body {
         font-size: 18px;
     }
+}
+
+/* Header Styles */
+.header {
+    position: relative; /* Makes sure absolute elements inside respect this */
+    z-index: 2; /* Ensures header stays on top */
+    width: 100vw; /* Force full viewport width */
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: space-between; /* Logo left, nav right */
+    align-items: center;
+    padding: 10px 0; /* Remove side padding, keep vertical */
+    border-bottom: 4px solid #ffac33; /* Orange border only at the bottom */
+    box-sizing: border-box; /* Prevents unwanted spacing */
+}
+
+.logo-container {
+    position: relative;
+    left: 7px; /* Move logo 20px to the right */
+    margin-right: 0;
+    width: 200px; /* Larger logo */
+    display: flex;
+    align-items: center;
+    margin-top: 4px; /* Add space above logo */
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
 }

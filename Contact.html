@@ -1,0 +1,87 @@
+<!-- ...existing code from Untitled-1... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Central Florida Breweries - Contact</title>
+    <link rel="stylesheet" href="general_style.css"> <!-- ✅ Use the main stylesheet -->
+    <link rel="stylesheet" href="social-icons.css"> <!-- ✅ Social icons CSS -->
+
+    <!-- ✅ JavaScript for page interactions -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let beerImage = document.querySelector(".beer-image");
+            if (beerImage) {
+                beerImage.style.width = "90%"; // Adjust image size dynamically
+                beerImage.style.height = "auto";
+            }
+        });
+    </script>
+</head>
+<body class="get-more-info-page" style="padding-top:0; margin-top:0;"> <!-- ✅ Use consistent class naming -->
+
+    <!-- Header with logo and navigation -->
+<div class="header">
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/main_1_brewery_logo.png" alt="Central Florida Breweries Logo">
+    </div>
+    <div class="top-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='About.html'">About</button>
+        <button onclick="location.href='Taco_Truck.html'">Taco Trucks</button>
+        <button onclick="location.href='Get_More_Info.html'">Get More Info</button>
+        <button onclick="location.href='Contact.html'">Contact</button> 
+    </div>
+</div>
+<!-- Full-width divider after header -->
+<div class="full-width-divider"></div>
+
+ <div class="split-container">
+        <div class="left">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/good%20food.png" alt="Contact form" class="beer-image">
+        </div>
+        <div class="right" style="margin-left: 40px; margin-right: 40px;"> <!-- Added margin-right here -->
+            <h1>Get More Info About Central Florida Breweries</h1>
+            <form class="contact-form" action="#" method="post" style="display: flex; flex-direction: column; gap: 15px; max-width: 500px; width: 100%;">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required style="width: 100%; min-width: 300px;">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required style="width: 100%; min-width: 300px;">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required style="width: 100%; min-width: 300px;"></textarea>
+
+                <button type="submit" style="background-color: #ffac33; color: #222; border: 1px solid #fff; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; min-width: 300px;">Send</button>
+            </form>
+        </div>
+    </div> <!-- end of split-container -->
+
+<!-- Add spacing below split-container to match About.html -->
+<div style="height: 30px;"></div>
+
+<footer>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100vw; position: relative; left: 50%; transform: translateX(-50%);">
+        <p style="margin: 0; text-align: center;">© 2025 Central Florida Breweries | Crafted with 🍻 by Bill Samboy</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/facebook_1.png" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Twitter.PNG" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/in/bill-jf-samboy/" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/LinkedIn.PNG" alt="LinkedIn">
+            </a>
+            <a href="https://www.youtube.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Youtube.PNG" alt="YouTube">
+            </a>
+        </div>
+        <div class="bottom-divider" style="width: 100vw; position: relative; left: 50%; transform: translateX(-50%);"></div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Central Florida Breweries - Get More Info</title>
+    <link rel="stylesheet" href="general_style.css"> <!-- ✅ Use the main stylesheet -->
+    <link rel="stylesheet" href="social-icons.css"> <!-- ✅ Social icons CSS -->
+
+    <!-- ✅ JavaScript for page interactions -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let beerImage = document.querySelector(".beer-image");
+            if (beerImage) {
+                beerImage.style.width = "90%"; // Adjust image size dynamically
+                beerImage.style.height = "auto";
+            }
+        });
+    </script>
+</head>
+<body class="get-more-info-page" style="padding-top:0; margin-top:0;"> <!-- ✅ Use consistent class naming -->
+
+    <!-- Header with logo and navigation -->
+<div class="header">
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/main_1_brewery_logo.png" alt="Central Florida Breweries Logo">
+    </div>
+    <div class="top-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='About.html'">About</button>
+        <button onclick="location.href='Taco_Truck.html'">Taco Trucks</button>
+        <button onclick="location.href='Get_More_Info.html'">Get More Info</button>
+        <button onclick="location.href='Contact.html'">Contact</button> 
+    </div>
+</div>
+<!-- Full-width divider after header -->
+<div class="full-width-divider"></div>
+
+ <div class="split-container">
+        <div class="left">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Me%20and%20Bro.png" alt="Me and bro in Nebraska brewery" class="beer-image">
+        </div>
+        <div class="right">
+            <h1>Get More Info About Central Florida Breweries</h1>
+            
+            <p>Want to immerse yourself in Central Florida’s craft beer scene? You’re in the right place! 🍻 From bustling taprooms to hidden local gems, the region is home to an incredible variety of breweries that bring unique flavors, atmospheres, and brewing techniques to the table.</p>
+            <p>Looking for upcoming events, brewery tours, or recommendations on seasonal beers? We've got you covered! Whether you're hunting for the smoothest lagers, boldest stouts, hoppiest IPAs, or fruitiest sours, there's a perfect brew waiting for you.</p>
+            <p>We celebrate the creativity and dedication of independent brewers who continue to push boundaries with small-batch experiments and time-honored classics. With a strong focus on sustainable brewing practices and quality ingredients, Central Florida's craft beer culture is thriving.</p>
+            <p>Ready to start your journey? 🍺 Explore local favorites, discover new brews, and experience the best beer spots around. <strong>Check out our</strong> <a href="index.html">Home Page</a> <strong>to plan your next brewery adventure!</strong></p>
+
+            <hr>
+
+            <p><strong>Connect with me on LinkedIn:</strong> <a href="https://www.linkedin.com/in/bill-jf-samboy/" target="_blank">Bill JF Samboy</a></p>
+        </div>
+    </div> <!-- end of split-container -->
+
+<!-- Add spacing below split-container to match About.html -->
+<div style="height: 30px;"></div>
+
+<footer>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100vw; position: relative; left: 50%; transform: translateX(-50%);">
+        <p style="margin: 0; text-align: center;">© 2025 Central Florida Breweries | Crafted with 🍻 by Bill Samboy</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/facebook_1.png" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Twitter.PNG" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com/in/bill-jf-samboy/" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/LinkedIn.PNG" alt="LinkedIn">
+            </a>
+            <a href="https://www.youtube.com/yourbrewery" target="_blank">
+                <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Youtube.PNG" alt="YouTube">
+            </a>
+        </div>
+        <div class="bottom-divider" style="width: 100vw; position: relative; left: 50%; transform: translateX(-50%);"></div>
+    </div>
+</footer>
+
+</body>
+</html>
+

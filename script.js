@@ -1,3 +1,6 @@
+// ✅ Global variable to track the currently open InfoWindow
+let currentInfoWindow = null;
+
 // ✅ Global marker storage for filtering
 let markers = [];
 
@@ -13,6 +16,11 @@ window.initMap = function () {
         zoom: 10,
         center: { lat: 28.5383, lng: -81.3792 }, // Central Florida
         mapId: "718387af81a38506"
+    });
+
+    // ✅ buttons for navigation
+    document.querySelector("body > div.top-buttons > button:nth-child(1)").addEventListener("click", function() {
+        window.location.href = "about.html"; // ✅ Redirects to the About page
     });
 
     // ✅ Setup Directions service and renderer
@@ -44,43 +52,53 @@ function findBreweries(map) {
             return;
         }
 
-        console.log(`Found ${results.length} breweries.`);
         results.forEach(place => {
-            const markerElement = document.createElement("img");
-            markerElement.src = "https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/beermug.png";
-            markerElement.style.width = "40px";
-            markerElement.style.height = "40px";
-            markerElement.style.cursor = "pointer";
-
-            const marker = new google.maps.marker.AdvancedMarkerElement({
+            // Create a marker for each brewery
+            const marker = new google.maps.Marker({
                 position: place.geometry.location,
                 map: map,
                 title: place.name,
-                content: markerElement
+                icon: {
+                    url: "https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/beermug.png", // Beer mug icon
+                    scaledSize: new google.maps.Size(40, 40) // Adjust the size of the icon
+                }
             });
 
-            marker.addEventListener("gmp-click", () => {
-                console.log(`Marker clicked: ${place.name}`);
-                const infoWindow = new google.maps.InfoWindow({
-                    content: `
-                        <div style="max-width: 250px; background-color: #222; color: #fff; padding: 10px; border-radius: 8px;">
-                            <h3 style="margin: 0; font-size: 16px;">${place.name}</h3>
-                            <p style="margin: 5px 0;"><strong>Address:</strong> ${place.formatted_address}</p>
-                            <p style="margin: 5px 0;"><strong>Rating:</strong> ${place.rating || "Not available"} ⭐</p>
-                            <button onclick="getDirections(${place.geometry.location.lat()}, ${place.geometry.location.lng()}, '${place.name}')"
-                                style="background-color: #ffac33; color: #222; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
-                                🚗 Get Directions
-                            </button>
-                        </div>
-                    `
-                });
+// ✅ Create an InfoWindow for each marker
+const imageUrl = place.photos && place.photos.length > 0 && place.photos[0].getUrl
+    ? place.photos[0].getUrl()
+    : "default-image.jpg"; // ✅ Use a placeholder if no image is available
+
+const infoWindow = new google.maps.InfoWindow({
+    content: `<div class="info-window">
+                 <img src="${imageUrl}" style="width:100%; border-radius:5px; margin-bottom:8px;" />
+                 <h3>${place.name}</h3>
+                 <p><strong>⭐ Rating:</strong> ${place.rating || "Not available"}</p>
+                 <p>📍 ${place.formatted_address}</p>
+                 <button onclick="getDirections(${place.geometry.location.lat()}, ${place.geometry.location.lng()}, '${place.name.replace(/'/g, "\\'")}')"
+                         style="margin-top:10px; padding:8px 12px; background-color:#ffac33; border:none; border-radius:4px; cursor:pointer;">
+                     🚗 Get Directions
+                 </button>
+              </div>`
+});
+
+
+            // Add a click event listener to open the InfoWindow
+            marker.addListener("click", () => {
+                if (currentInfoWindow) {
+                    currentInfoWindow.close();
+                }
                 infoWindow.open(map, marker);
+                currentInfoWindow = infoWindow;
             });
 
+            // Store the marker for future use (e.g., filtering)
             markers.push({ marker, name: place.name.toLowerCase(), type: place.types });
         });
     });
 }
+
+
 
 // ✅ Get driving directions from current location to selected brewery
 function getDirections(lat, lng, name) {
@@ -114,6 +132,19 @@ function getDirections(lat, lng, name) {
                     (response, status) => {
                         if (status === "OK") {
                             directionsRenderer.setDirections(response);
+
+                            // ✅ Show step-by-step instructions
+                            const directionsPanel = document.getElementById("directions-panel");
+                            directionsPanel.style.display = "block";
+                            directionsPanel.innerHTML = "<h2 style='color:#ffac33;'>🚗 Step-by-Step Directions</h2>";
+
+                            const steps = response.routes[0].legs[0].steps;
+                            steps.forEach((step, index) => {
+                                directionsPanel.innerHTML += `
+                                    <p><strong>Step ${index + 1}:</strong> ${step.instructions}
+                                    <br><em>(${step.distance.text}, ${step.duration.text})</em></p>
+                                `;
+                            });
                         } else {
                             console.error("Directions request failed due to " + status);
                             alert("Directions request failed. Try again.");
@@ -129,6 +160,7 @@ function getDirections(lat, lng, name) {
         alert("Geolocation is not supported by your browser.");
     }
 }
+
 
 // ✅ Live Filtering for Brewery Search
 document.getElementById("searchBox").addEventListener("input", function () {
@@ -187,3 +219,15 @@ function fetchFeaturedBreweries(map) {
         console.log(`Featured Breweries Loaded: ${topBreweries.map(p => `${p.name} (${p.rating})`).join(", ")}`);
     });
 }
+
+// ✅ Close Directions Panel
+document.addEventListener("DOMContentLoaded", function () {
+    const closeBtn = document.getElementById("close-directions");
+    const panel = document.getElementById("directions-panel");
+    
+    if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+            document.getElementById("directions-panel").style.display = "none";
+        });
+    }
+});

@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Central Florida Breweries</title>
+    <title>Central Florida Breweries -Home</title>
     <link rel="stylesheet" href="style.css">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiJZLTt_UEFR6dAx58_DG79O76ICmSMt4&libraries=places,marker&callback=initMap&map_ids=718387af81a38506"></script>
+    <link rel="stylesheet" href="social-icons.css"> <!-- ✅ Link to your social icons CSS file -->
+
+    <script>
+        // ✅ Redirects to the About page when the first button is clicked
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("body > div.top-buttons > button:nth-child(1)").addEventListener("click", function () {
+                window.location.href = "about.html";
+            });
+        });
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiJZLTt_UEFR6dAx58_DG79O76ICmSMt4&libraries=places,directions,marker, geolocation&callback=initMap&map_ids=718387af81a38506"></script>
     <style>
         /* Make bullet points the same color as background */
         ul li::marker {
@@ -19,19 +30,21 @@
         #map {
             width: 100%;
             height: 100%;
+            
         }
         /* ✅ Styles for Top-Right Navigation Buttons */
         .top-buttons {
             position: absolute;
-            top: 20px;
+            top: 30px;
             right: 20px;
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         .top-buttons button {
             background-color: #ffac33;
             color: #222;
-            border: none;
+            border: 1px solid #fff; /* Thin white border */
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
@@ -49,12 +62,19 @@
     </style>
 </head>
 <body>
+
+    <!-- Logo Section -->
+<img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/main_1_brewery_logo.png" 
+     alt="Central Florida Breweries Logo" 
+     class="brewery-logo">
+     
     <!-- ✅ Top-Right Buttons -->
     <div class="top-buttons">
-        <button>About</button>
-        <button>Food Trucks</button>
-        <button>Taco Trucks</button>
-        <button>BBQ Spots</button>
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='About.html'">About</button>
+        <button onclick="location.href='Taco_Truck.html'">Taco Trucks</button>
+        <button onclick="location.href='Get_More_Info.html'">Get More Info</button>
+        <button onclick="location.href='Contact.html'">Contact</button>
     </div>
 
     <h1 style="text-align: center;">Welcome to My Brewery Directory! 🍻</h1>
@@ -65,44 +85,52 @@
         <div id="map"></div>
     </div>
 
-    <!-- 🍺 Here are two of my favorites! -->
-    <h2 style="text-align: center;">Here Are Two of My Favorites!</h2>
-
-    <h3>Hourglass Brewing – A Craft Beer Haven 🎨🍺</h3>
-    <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/hourglass_brewing.jpg"
-    alt="Hourglass Brewing"
-    style="width: 100%; max-width: 300px; border-radius: 10px;">
-    <p>Located in Longwood, FL, Hourglass Brewing is a family-owned, award-winning craft brewery...</p>
-
-    <h3>Bowigens Beer Company – Small Batch, Big Flavor 🍻🔥</h3>
-    <p>Bowigens Beer Company, located in Casselberry, FL, is known for its small-batch brewing philosophy...</p>
-
-    <h3>🍻 Why These Breweries Stand Out</h3>
-    <ul>
-        <li>✔ Hourglass Brewing brings creativity, community, and a massive beer selection.</li>
-        <li>✔ Bowigens Beer Company delivers bold, experimental flavors in small batches.</li>
-    </ul>
-
-   <!-- 🍺 Featured Breweries Section -->
-<h2 style="text-align: center;">🍺 Featured Breweries in Central Florida</h2>
-<div id="featured-breweries" style="width: 80%; margin: 20px auto; background: #2b2b2b; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); color: #f5f5f5;">
-    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-        <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/627cbe8856e91f694472696d39c01787768edd4e/images/sidewardbrewing.jpg" 
-             alt="Sideward Brewing Co." 
-             style="width: 100%; max-width: 50px; height: auto; border-radius:  10px; margin-right: 20px;">
-        <div>
-            <h3>Sideward Brewing Co.</h3>
-            <p><strong>Rating:</strong> 4.9 ⭐</p>
-            <p><strong>Address:</strong> 210 N Bumby Ave Suite C, Orlando, FL 32803, United States</p>
-        </div>
-    </div>
+<!-- ✅ Directions Panel with Close Button -->
+<div id="directions-panel" style="width: 80%; margin: 20px auto; padding: 20px; background: #333; color: #fff; border-radius: 10px; position: relative; display: none;">
+    <button id="close-directions" style="position: absolute; top: 10px; right: 15px; background: #ffac33; color: #000; border: none; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer;">X</button>
+    <h2 style="color: #ffac33; margin-top: 0;">🚗 Step-by-Step Directions</h2>
 </div>
 
+
+    <!-- 🍺 Featured Breweries Section -->
+    <h2 style="text-align: center;">🍺 Featured Breweries in Central Florida</h2>
+    <div id="featured-breweries" style="width: 80%; margin: 20px auto; background: #2b2b2b; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); color: #f5f5f5;">
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/627cbe8856e91f694472696d39c01787768edd4e/images/sidewardbrewing.jpg" 
+                 alt="Sideward Brewing Co." 
+                 style="width: 100%; max-width: 50px; height: auto; border-radius:  10px; margin-right: 20px;">
+            <div>
+                <h3>Sideward Brewing Co.</h3>
+                <p><strong>Rating:</strong> 4.9 ⭐</p>
+                <p><strong>Address:</strong> 210 N Bumby Ave Suite C, Orlando, FL 32803, United States</p>
+            </div>
+        </div>
+    </div>
+
     <!-- ✅ Footer Section -->
+   
     <footer>
-        <p>© 2025 Central Florida Breweries | Crafted with 🍻 by Bill</p>
-        <p><a href="https://www.instagram.com/yourbrewery" style="color: #ffac33; text-decoration: none;">Follow us on Instagram</a></p>
-    </footer>
+    <p>© 2025 Central Florida Breweries | Crafted with 🍻 by Bill Samboy</p>
+    
+    <div class="social-icons">
+        <a href="https://www.facebook.com/yourbrewery" target="_blank">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/facebook_1.png" alt="Facebook">
+        </a>
+        <a href="https://www.twitter.com/yourbrewery" target="_blank">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Twitter.PNG" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/yourbrewery" target="_blank">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/in/bill-jf-samboy/" target="_blank">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/LinkedIn.PNG" alt="LinkedIn">
+        </a>
+        <a href="https://www.youtube.com/yourbrewery" target="_blank">
+            <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/Youtube.PNG" alt="YouTube">
+        </a>
+    </div>
+    <div class="bottom-divider"></div>
+</footer>
 
     <script src="script.js"></script>
 </body>
