@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Central Florida Breweries -Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="social-icons.css"> <!-- ✅ Link to your social icons CSS file -->
@@ -65,7 +66,7 @@
 
     <!-- Logo Section -->
     <img src="https://raw.githubusercontent.com/billjf/CentralFloridaBreweries/main/images/main_1_brewery_logo.png" alt="Main Brewery Logo" class="brewery-logo">
-     
+
     <!-- ✅ Top-Right Buttons -->
     <div class="top-buttons">
         <button onclick="location.href='index.html'">Home</button>
@@ -81,6 +82,10 @@
     <!-- ✅ Full-Width, Centered Map -->
     <div id="map-container">
         <div id="map"></div>
+    </div>
+    <!-- Mobile nav inserted after map -->
+    <div id="mobile-nav" class="top-buttons" style="display:none;">
+        <button onclick="location.href='About.html'">About</button>
     </div>
 
 <!-- ✅ Directions Panel with Close Button -->
@@ -100,15 +105,19 @@
             <div>
                 <h3>Sideward Brewing Co.</h3>
                 <p><strong>Rating:</strong> 4.9 ⭐</p>
-                <p><strong>Address:</strong> 210 N Bumby Ave Suite C, Orlando, FL 32803, United States</p>
+                <p class="address"><strong>Address:</strong> 210 N Bumby Ave Suite C,<br>Orlando, FL 32803,<br>United States</p>
             </div>
         </div>
+    </div>
+    <!-- Add About button link after featured breweries for mobile only -->
+    <div id="about-link-mobile" style="display:none; margin: 18px auto 0 auto; text-align:center;">
+        <a href="About.html" class="about-link-mobile-btn">About</a>
     </div>
 
     <!-- ✅ Footer Section -->
    
     <footer>
-    <p>© 2025 Central Florida Breweries | Crafted with 🍻 by Bill Samboy</p>
+    <p>© 2025 Central Florida Breweries |<span class="break"></span>Crafted with 🍻 by Bill Samboy</p>
     
     <div class="social-icons">
         <a href="https://www.facebook.com/yourbrewery" target="_blank">
@@ -131,5 +140,24 @@
 </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Show/hide nav bars and About link based on screen width
+        function handleNavDisplay() {
+            var desktopNav = document.querySelector('.top-buttons');
+            var mobileNav = document.getElementById('mobile-nav');
+            var aboutLinkMobile = document.getElementById('about-link-mobile');
+            if (window.innerWidth <= 480) {
+                if (desktopNav) desktopNav.style.display = 'none';
+                if (mobileNav) mobileNav.style.display = 'none';
+                if (aboutLinkMobile) aboutLinkMobile.style.display = 'block';
+            } else {
+                if (desktopNav) desktopNav.style.display = 'flex';
+                if (mobileNav) mobileNav.style.display = 'none';
+                if (aboutLinkMobile) aboutLinkMobile.style.display = 'none';
+            }
+        }
+        window.addEventListener('resize', handleNavDisplay);
+        document.addEventListener('DOMContentLoaded', handleNavDisplay);
+    </script>
 </body>
 </html>

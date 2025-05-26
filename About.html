@@ -2,25 +2,19 @@
 <html lang="en">
 <head>
     <title>Central Florida Breweries -About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add viewport for mobile scaling -->
     <link rel="stylesheet" href="general_style.css">
     <link rel="stylesheet" href="social-icons.css"> <!-- ✅ Link to your social icons CSS file -->
-
     <!-- ✅ JavaScript for page interactions -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Redirects to the About page when the first button is clicked
-            document.querySelector("body > div.top-buttons > button:nth-child(1)").addEventListener("click", function () {
-                window.location.href = "about.html";
-            });
-
-            // Dynamically resize beer image on page load
-            let beerImage = document.querySelector(".beer-image");
-            if (beerImage) {
-                beerImage.style.width = "90%"; // Shrinks image to half its size
-                beerImage.style.height = "auto"; // Maintains aspect ratio
-            }
+            // Remove About button highlight if on About page
+            var aboutBtn = document.querySelector(".top-buttons button[onclick*='About.html']");
+            if (aboutBtn) aboutBtn.classList.add('active-button');
         });
     </script>
+    <style>
+</style>
 </head>
 <body class="about-page"> <!-- ✅ Added unique class for styling -->
 
@@ -31,14 +25,14 @@
     </div>
     <div class="top-buttons">
         <button onclick="location.href='index.html'">Home</button>
-        <button onclick="location.href='About.html'">About</button>
+        <button onclick="location.href='About.html'" class="active-button">About</button>
         <button onclick="location.href='Taco_Truck.html'">Taco Trucks</button>
         <button onclick="location.href='Get_More_Info.html'">Get More Info</button>
         <button onclick="location.href='Contact.html'">Contact</button>
     </div>
 </div>
 <!-- Full-width divider after header -->
-<div style="width: 100vw; height: 4px; background-color: #353534; margin-top: 5px; margin-bottom: 13px;"></div>
+<div class="full-width-divider"></div>
 
     <div class="split-container">
         <div class="left">
@@ -65,7 +59,7 @@
     </div>
 
     <footer>
-    <p>© 2025 Central Florida Breweries | Crafted with 🍻 by Bill Samboy</p>
+    <p><span style="display:block;">© 2025 Central Florida Breweries</span><span style="display:block;">Crafted with 🍻 by Bill Samboy</span></p>
     
     <div class="social-icons">
         <a href="https://www.facebook.com/yourbrewery" target="_blank">

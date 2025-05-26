@@ -220,15 +220,229 @@ a:hover {
     margin-top: 15px; /* Light padding above the divider */
 }
 
-/* ✅ Responsive Adjustments for Mobile */
+/* --- Mobile Responsive Styles for About & Info Pages --- */
+@media (max-width: 1024px) {
+    .split-container {
+        width: 98vw;
+        max-width: 99vw;
+        padding: 10px;
+    }
+    .logo-container {
+        max-width: 160px;
+    }
+}
 @media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 1in;
+    .split-container {
+        flex-direction: column;
+        width: 99vw;
+        max-width: 99vw;
+        padding: 6vw 2vw;
+        align-items: stretch;
     }
-    body {
-        font-size: 18px;
+    .left, .right {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 0;
     }
+    .beer-image {
+        max-width: 90vw;
+        width: 100%;
+        margin: 0 auto 18px auto;
+        display: block;
+    }
+    .logo-container {
+        max-width: 120px;
+        margin: 0 auto;
+        left: 0;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 0 0 0;
+    }
+    .top-buttons {
+        position: static;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100vw;
+        margin: 0 auto 8px auto;
+        background: #222;
+        box-shadow: none;
+        gap: 6px;
+        padding: 4px 0;
+    }
+    .top-buttons button {
+        width: 90vw;
+        max-width: 220px;
+        font-size: 0.95rem;
+        padding: 8px 0;
+        margin: 0 auto;
+        border-radius: 4px;
+        display: block;
+        text-align: center;
+    }
+    h1 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    .right p {
+        font-size: 1rem;
+        text-align: left;
+    }
+    footer {
+        font-size: 0.95rem;
+        padding: 10px 2px;
+    }
+    .social-icons {
+        gap: 8px;
+    }
+}
+@media (max-width: 480px) {
+    .logo-container {
+        max-width: 95vw;
+        margin: 0 auto 8px auto;
+    }
+    .logo-container img {
+        width: 180px;
+        max-width: 95vw;
+        display: block;
+        margin: 0 auto;
+    }
+    .split-container {
+        padding: 2vw 0;
+        border-width: 2px;
+    }
+    .beer-image {
+        max-width: 98vw;
+        width: 100%;
+        margin: 0 auto 12px auto;
+    }
+    .right p {
+        font-size: 0.98rem;
+        text-align: left;
+    }
+    .top-buttons button {
+        width: 98vw;
+        max-width: 99vw;
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+    footer p {
+        font-size: 0.92rem;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .bottom-divider {
+        margin-top: 10px;
+    }
+}
+
+/* Move shared mobile styles here for all pages */
+@media (max-width: 480px) {
+  .split-container {
+    width: 96vw !important;
+    max-width: 99vw !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 5vw !important;
+    border-width: 2px !important;
+  }
+  .left, .right {
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .beer-image {
+    max-width: 95vw !important;
+    width: 100% !important;
+    margin: 0 auto 12px auto !important;
+    display: block !important;
+    margin-top: 18px !important;
+  }
+  .logo-container {
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 auto 8px auto !important;
+    display: block !important;
+  }
+  .logo-container img {
+    display: inline-block !important;
+    margin: 0 auto !important;
+    width: 180px !important;
+    max-width: 95vw !important;
+  }
+  .top-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100vw !important;
+    margin: 0 auto 8px auto !important;
+    background: #222 !important;
+    box-shadow: none !important;
+    gap: 2px !important;
+    padding: 4px 0 !important;
+    position: static !important;
+  }
+  .top-buttons button {
+    width: 98vw !important;
+    max-width: 99vw !important;
+    font-size: 0.9rem !important;
+    padding: 8px 0 !important;
+    margin: 0 auto 4px auto !important;
+    border-radius: 4px !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  .full-width-divider {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    position: relative !important;
+    margin: 10px 0 !important;
+    box-sizing: border-box !important;
+  }
+  h1 {
+    font-size: 1.3rem !important;
+    text-align: center !important;
+  }
+  .right p {
+    font-size: 1rem !important;
+    text-align: left !important;
+  }
+  footer {
+    padding: 10px 5vw !important;
+    font-size: 0.95em !important;
+    text-align: center !important;
+  }
+  .social-icons {
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+  .social-icons img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .bottom-divider {
+    margin: 10px 0 !important;
+  }
+  .top-buttons .active-button {
+    background: #ffd166 !important;
+    color: #222 !important;
+    border: 2px solid #ffac33 !important;
+  }
 }
 
 /* Header Styles */

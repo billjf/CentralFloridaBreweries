@@ -240,13 +240,287 @@ a:hover {
     margin-top: 15px; /* Light padding above the divider */
 }
 
-/* ✅ Responsive Adjustments for Mobile */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 1in;
+/* --- MOBILE RESPONSIVE ENHANCEMENTS FOR INDEX.HTML --- */
+@media (max-width: 1024px) {
+    .brewery-logo {
+        width: 150px;
+        top: 10px;
+        left: 10px;
     }
-    body {
-        font-size: 18px;
+    .top-buttons {
+        top: 10px;
+        right: 10px;
+    }
+    #map-container {
+        height: 400px;
+    }
+    #featured-breweries {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brewery-logo {
+        width: 120px;
+        top: 8px;
+        left: 8px;
+    }
+    .top-buttons {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 10px;
+        background: #222;
+        z-index: 10;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .top-buttons button {
+        width: 90vw;
+        max-width: 220px;
+        font-size: 0.85rem;
+        padding: 6px 8px;
+    }
+    #map-container {
+        height: 250px;
+    }
+    #featured-breweries {
+        width: 99vw;
+        padding: 5px;
+    }
+    #featured-breweries > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    #featured-breweries img {
+        margin: 0 0 10px 0;
+        max-width: 90vw;
+    }
+    h1, h2 {
+        font-size: 1.2rem;
+    }
+    footer {
+        font-size: 0.95rem;
+        padding: 10px 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brewery-logo {
+        display: block;
+        position: static;
+        margin: 16px auto 8px auto;
+        left: unset;
+        right: unset;
+        top: unset;
+        width: 180px;
+        max-width: 95vw;
+    }
+    h1, p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 95vw;
+    }
+    .top-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100vw;
+        margin: 0 auto 8px auto;
+        background: #222;
+        box-shadow: none;
+        padding: 4px 0;
+        position: relative;
+        top: 0;
+        right: 0;
+        z-index: 10;
+    }
+    .top-buttons button {
+        width: 60vw;
+        max-width: 120px;
+        font-size: 0.8rem;
+        padding: 4px 0;
+        margin: 2px auto;
+        border-radius: 4px;
+        display: block;
+        text-align: center;
+    }
+    /* Hide the original nav at the top for mobile, but keep for JS fallback */
+    body > .top-buttons {
+        display: none !important;
+    }
+    /* Show the mobile nav after the map */
+    #mobile-nav {
+        display: none !important;
+    }
+    #featured-breweries {
+        width: 96vw !important;
+        max-width: 98vw !important;
+        margin: 16px auto !important;
+        padding: 10px 2vw 10px 2vw !important;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(255,255,255,0.2);
+        color: #f5f5f5;
+        text-align: center !important;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    #featured-breweries > div {
+        margin: 0 auto 10px auto !important;
+        padding: 10px 0 !important;
+        border-bottom: 1px solid #ffac33 !important;
+        width: 100% !important;
+        max-width: 95vw !important;
+        box-sizing: border-box;
+    }
+    #featured-breweries h3, #featured-breweries p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 95vw;
+        box-sizing: border-box;
+    }
+    #about-link-mobile {
+        display: block !important;
+        margin: 18px auto 0 auto;
+        text-align: center;
+    }
+    .about-link-mobile-btn {
+        display: inline-block;
+        background: #ffac33;
+        color: #222;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        font-size: 0.95rem;
+        padding: 8px 24px;
+        text-decoration: none;
+        margin: 0 auto;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        transition: background 0.2s, color 0.2s;
+    }
+    .about-link-mobile-btn:hover {
+        background: #ffd166;
+        color: #000;
+    }
+}
+@media (min-width: 481px) {
+    #mobile-nav {
+        display: none !important;
+    }
+}
+
+/* Make all images and containers fluid */
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Fix Featured Breweries Section Layout --- */
+#featured-breweries > div {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+}
+#featured-breweries h3 {
+    margin-bottom: 5px;
+    text-align: center;
+}
+#featured-breweries p {
+    margin: 0 0 5px 0;
+    text-align: center;
+}
+#featured-breweries img {
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+/* Ensure touch targets are large enough */
+.top-buttons button, .social-icons a {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* --- Mobile Navigation Styles --- */
+#mobile-nav {
+    display: none; /* Hidden by default, shown on mobile */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Below the header */
+    left: 0;
+    z-index: 1000;
+}
+
+#mobile-nav button {
+    background: #ffac33;
+    color: #222;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 8px auto;
+    width: 90vw;
+    max-width: 220px;
+    font-size: 0.95rem;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+}
+
+/* Remove border, background, and shadow for mobile About button nav */
+@media (max-width: 480px) {
+    #mobile-nav.top-buttons {
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 auto 8px auto !important;
+        justify-content: center;
+    }
+    #mobile-nav button {
+        background: #ffac33;
+        color: #222;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        margin: 0 auto;
+        width: 60vw;
+        max-width: 120px;
+        font-size: 0.8rem;
+        padding: 4px 0;
+        display: block;
+        text-align: center;
+    }
+    #featured-breweries h3 {
+        font-size: 1rem !important;
+    }
+    #featured-breweries p {
+        font-size: 0.85rem !important;
+        line-height: 1.3 !important;
+        word-break: break-word;
+        margin-bottom: 6px !important;
+    }
+    #featured-breweries {
+        padding: 8px 1vw 8px 1vw !important;
+    }
+    #featured-breweries p strong {
+        display: inline;
+    }
+    #featured-breweries p.address {
+        display: block;
+        white-space: pre-line;
+    }
+    footer p {
+        display: block;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        text-align: center;
+        margin-bottom: 4px;
+        white-space: pre-line;
+    }
+    footer p span.break {
+        display: block;
+        margin-top: 2px;
     }
 }
